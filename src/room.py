@@ -5,6 +5,7 @@ class Player:
     def __init__(self, name, description):
         self.name = name
         self.description = description
-
-    def __str__(self):
-        return (f"You are in the {self.name}. {self.description}")
+        self.n_to = None
+        self.s_to = None
+        self.w_to = None
+        self.e_to = None
