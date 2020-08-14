@@ -1,4 +1,3 @@
-import sys
 from room import Room
 from player import Player
 
@@ -47,19 +46,19 @@ def attempt_to_move(direction):
             player.current_room = player.current_room.s_to
 
     elif direction == "north":
-        if player.current_room.s_to is None:
+        if player.current_room.n_to is None:
             print("Sorry there is no room to the North here")
         else: 
             player.current_room = player.current_room.n_to
 
     elif direction == "west":
-        if player.current_room.s_to is None:
+        if player.current_room.w_to is None:
             print("Sorry there is no room to the West here")
         else: 
             player.current_room = player.current_room.w_to
 
     elif direction == "east":
-        if player.current_room.s_to is None:
+        if player.current_room.e_to is None:
             print("Sorry there is no room to the East here")
         else: 
             player.current_room = player.current_room.e_to
@@ -88,7 +87,6 @@ while not game_over:
     print(player.current_room.description)
 
     command = input("Which direction do you want to move?")
-    command = command.lower()
 
     if command in ['q', 'quit']:
         game_over = True
