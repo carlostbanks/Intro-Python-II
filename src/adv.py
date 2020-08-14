@@ -39,24 +39,33 @@ room['treasure'].s_to = room['narrow']
 #
 # Main
 #
-def attempt_to_move(direction)
+def attempt_to_move(direction):
+    if direction == "south":
+        if player.current_room.s_to is None:
+            print("Sorry there is no room to the South here")
+        else: 
+            player.current_room = player.current_room.s_to
 
+    elif direction == "north":
+        if player.current_room.s_to is None:
+            print("Sorry there is no room to the North here")
+        else: 
+            player.current_room = player.current_room.n_to
 
+    elif direction == "west":
+        if player.current_room.s_to is None:
+            print("Sorry there is no room to the West here")
+        else: 
+            player.current_room = player.current_room.w_to
 
-
-
-
-
-
-
-
-
-
-
-
-
+    elif direction == "east":
+        if player.current_room.s_to is None:
+            print("Sorry there is no room to the East here")
+        else: 
+            player.current_room = player.current_room.e_to
 
 # Make a new player object that is currently in the 'outside' room.
+player = Player(room['outside'])
 
 # Write a loop that:
 #
@@ -68,6 +77,7 @@ def attempt_to_move(direction)
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
 print("Do you want to play a game?")
 print("Press N, S, E, W to move around")
 print("To quit, press Q or type 'quit'")
