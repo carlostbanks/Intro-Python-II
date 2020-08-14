@@ -39,38 +39,26 @@ room['treasure'].s_to = room['narrow']
 #
 # Main
 #
-playing = False
+def attempt_to_move(direction)
 
-print("Do you want to play a game?")
 
-start = input("Are you ready to play a game? Press Y or N")
 
-if start.upper() == 'N':
-    print("Thank you. Please come again.")
-    sys.exit()
-elif start.upper() == 'Y':
-    playing = True
-    Print("Alright, let's do this!")
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Make a new player object that is currently in the 'outside' room.
-player_name = input("Please enter your name dude")
-player = Player(player_name, room['outside'])
-
-print("Nice to meet you ", player.name.capitalize(), "!", player.current_room)
 
 # Write a loop that:
-while playing: 
-    movement = input("Which direction do you want to go in? N, E, S, or W?")
-
-    if movement.upper() = "Q":
-        playing = False
-        Print("Thank you. Please come again.")
-
-    elif movement.upper() = "N":
-        
-
-
-
 #
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
@@ -80,5 +68,34 @@ while playing:
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
-if command in ['q']:
-    playing = False
+print("Do you want to play a game?")
+print("Press N, S, E, W to move around")
+print("To quit, press Q or type 'quit'")
+
+game_over = False
+while not game_over:
+    print(player.current_room.name)
+    print(player.current_room.description)
+
+    command = input("Which direction do you want to move?")
+    command = command.lower()
+
+    if command in ['q', 'quit']:
+        game_over = True
+
+    elif command in ['s', 'south']:
+        attempt_to_move("south")
+
+    elif command in ['n', 'north']:
+        attempt_to_move("north")
+
+    elif command in ['e', 'east']:
+        attempt_to_move("east")
+
+    elif command in ['w', 'west']:
+        attempt_to_move("west")
+
+    else: 
+        print("I do not know what you entered")
+
+print("Thanks for playing my game!")
