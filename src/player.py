@@ -6,5 +6,5 @@ class Player:
         self.name = name
         self.current_room = current_room
 
-    def __str__(self):
-        return (f"Player Name: {self.name}, Current Room: {self.current_room}")
+    def move_to(self, new_room):
+        self.current_room = new_room
