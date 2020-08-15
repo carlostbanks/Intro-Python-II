@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-
+from item import Item
 
 # Declare all the rooms
 
@@ -34,6 +34,12 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
+
+# Add items to the rooms
+room['overlook'].add_item(Item('flashlight'))
+room['narrow'].add_item(Item('key'))
+room['foyer'].add_item(Item('clock'))
+
 
 #
 # Main
@@ -86,6 +92,9 @@ while not game_over:
     print(player.current_room.name)
     print(player.current_room.description)
 
+    for item in player.current_room.items:
+        print("In this room there is a", item.name)
+
     command = input("Which direction do you want to move?")
 
     if command in ['q', 'quit']:
@@ -102,6 +111,25 @@ while not game_over:
 
     elif command in ['w', 'west']:
         attempt_to_move("west")
+
+    elif command in ["i", "items"]:
+        if len(player.items) == 0:
+            print("You don't have any items silly")
+        else:
+            for item in player.items:
+                print("You are holding the following:", item.name)
+
+    elif command[0] in ['get', 'take']:
+        item = player.current_room.pick_up_item(commands[1])
+
+        if item == None:
+            print(f"There is no {command[1]} in this room")
+        else:
+            player.items.append(item)
+            item.take() 
+
+    elif command[0] in ['drop']:
+        player.drop_item(command[1])
 
     else: 
         print("I do not know what you entered")
